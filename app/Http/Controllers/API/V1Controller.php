@@ -9,12 +9,19 @@ use Illuminate\Http\Request;
 
 class V1Controller extends Controller
 {
-    public function index(){
-        return response([
-            'status' => true,
-            'message' => 'Module V1'
-        ]);
-    }
+   public function index(){
+        if (auth()->guest()){
+            return response()->json(['error' => 'Silahkan Login'], 401);
+            }
+    
+            $user = User::get();
+            return response()->json([
+                'users'=>$user
+            ]);
+        }
+      
+    
+
 
     public function login(Request $request){
         
