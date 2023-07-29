@@ -22,7 +22,7 @@ Route::post('/login', [V1Controller::class, 'login']);
 
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/', [V1Controller::class, 'index'])->middleware('auth:api');
+    Route::get('/datauser', [V1Controller::class, 'index'])->middleware('auth:api');
 
     Route::get('/tampilcrud', [CrudController::class, 'tampilcrud'])->middleware('auth:api');
     Route::post('/tambahcrud', [CrudController::class, 'tambahcrud'])->middleware('auth:api');
