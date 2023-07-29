@@ -11,12 +11,17 @@ use App\Http\Resources\UserResources;
 
 class CrudController extends Controller
 {
-    public function tampilcrud(){
+   public function tampilcrud(){
+        if (auth()->guest()){
+        return response()->json(['error' => 'Silahkan Login'], 401);
+        }
+
         $crud = Crud::get();
         return response()->json([
             'crud'=>$crud
         ]);
     }
+
 
     public function  tambahcrud(Request $request){
         $validator = Validator::make($request->all(),[
